@@ -16,6 +16,7 @@ namespace Program1_OpenGL_Line_Rectangle_Maker
    {
 
       private List<Figure> FigureList;
+      private Figure curFigure;
 
       public Form1()
       {
@@ -44,15 +45,48 @@ namespace Program1_OpenGL_Line_Rectangle_Maker
 
       private void glControl1_MouseDown(object sender, EventArgs e)
       {
-
+         var color = _GetColor();
       }
+
+      private Color _GetColor()
+      {
+         var color = Color.White;
+         switch (FigureColor.Text)
+         {
+            case "Red":
+               color = Color.Red;
+               break;
+            case "Orange":
+               color = Color.Orange;
+               break;
+            case "Yellow":
+               color = Color.Yellow;
+               break;
+            case "Green":
+               color = Color.Green;
+               break;
+            case "Blue":
+               color = Color.Blue;
+               break;
+            case "Indigo":
+               color = Color.Indigo;
+               break;
+            case "Violet":
+               color = Color.Violet;
+               break;
+         }
+         return color;
+      }
+
       private void glControl1_MouseMove(object sender, EventArgs e)
       {
 
       }
+
       private void glControl1_MouseUp(object sender, EventArgs e)
       {
-
+         FigureList.Add(curFigure);
+         curFigure = null;
       }
    }
 }
