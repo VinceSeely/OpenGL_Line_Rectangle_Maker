@@ -66,6 +66,7 @@ namespace Program1_OpenGL_Line_Rectangle_Maker
                break;
          }
          curFigure.FGColor = newColor;
+         curFigure.LineWidth = (float) LineWidth.Value;
       }
 
       private Color _GetColor()
