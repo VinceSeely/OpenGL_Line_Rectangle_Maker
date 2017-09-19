@@ -40,12 +40,32 @@ namespace Program1_OpenGL_Line_Rectangle_Maker
 
       private void glControl1_Load(object sender, EventArgs e)
       {
-
+         
       }
 
-      private void glControl1_MouseDown(object sender, EventArgs e)
+      private void glControl1_MouseDown(object sender, MouseEventArgs e)
       {
+         var coordinatePoint = new Point(e.X, e.Y);
          var color = _GetColor();
+         _GetNewFigure(coordinatePoint, color);
+      }
+
+      private void _GetNewFigure(Point coordinatePoint, Color newColor)
+      {
+         switch (FigureType.Text)
+         {
+            case "Line":
+               curFigure = new TLine();
+               curFigure.AddPoint(coordinatePoint);
+               curFigure.AddPoint(coordinatePoint);
+               break;
+            case "Rectangle":
+               curFigure = new TRectangle();
+               curFigure.AddPoint(coordinatePoint);
+               curFigure.AddPoint(coordinatePoint);
+               break;
+         }
+         curFigure.FGColor = newColor;
       }
 
       private Color _GetColor()
@@ -78,12 +98,12 @@ namespace Program1_OpenGL_Line_Rectangle_Maker
          return color;
       }
 
-      private void glControl1_MouseMove(object sender, EventArgs e)
+      private void glControl1_MouseMove(object sender, MouseEventArgs e)
       {
 
       }
 
-      private void glControl1_MouseUp(object sender, EventArgs e)
+      private void glControl1_MouseUp(object sender, MouseEventArgs e)
       {
          FigureList.Add(curFigure);
          curFigure = null;
