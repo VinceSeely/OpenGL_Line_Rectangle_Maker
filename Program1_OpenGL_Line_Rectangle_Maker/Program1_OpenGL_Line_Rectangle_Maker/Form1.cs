@@ -127,5 +127,11 @@ namespace Program1_OpenGL_Line_Rectangle_Maker
          GL.LoadIdentity();
          GL.Ortho(0, glControl1.Size.Width, glControl1.Size.Height, 0, 1, -1);
       }
+
+      private void Form1_Shown(object sender, EventArgs e)
+      {
+         GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
+         glControl1.SwapBuffers();
+      }
    }
 }
