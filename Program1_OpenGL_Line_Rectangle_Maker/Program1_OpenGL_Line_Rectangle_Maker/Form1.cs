@@ -40,7 +40,6 @@ namespace Program1_OpenGL_Line_Rectangle_Maker
 
       private void glControl1_Load(object sender, EventArgs e)
       {
-         
       }
 
       private void glControl1_MouseDown(object sender, MouseEventArgs e)
@@ -48,6 +47,7 @@ namespace Program1_OpenGL_Line_Rectangle_Maker
          var coordinatePoint = new Point(e.X, e.Y);
          var color = _GetColor();
          _GetNewFigure(coordinatePoint, color);
+      
       }
 
       private void _GetNewFigure(Point coordinatePoint, Color newColor)
@@ -101,13 +101,31 @@ namespace Program1_OpenGL_Line_Rectangle_Maker
 
       private void glControl1_MouseMove(object sender, MouseEventArgs e)
       {
-
+         if (curFigure != null)
+         {
+            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
+            var newPoint = new Point(e.X, e.Y);
+            curFigure.ReplacePoint(newPoint,1);
+            foreach (var figure in FigureList)
+            {
+               figure.Show();
+            }
+            curFigure.Show();
+            glControl1.SwapBuffers();
+         }
       }
 
       private void glControl1_MouseUp(object sender, MouseEventArgs e)
       {
          FigureList.Add(curFigure);
          curFigure = null;
+      }
+
+      private void Form1_Load(object sender, EventArgs e)
+      {
+         GL.MatrixMode(MatrixMode.Projection);
+         GL.LoadIdentity();
+         GL.Ortho(0, glControl1.Size.Width, glControl1.Size.Height, 0, 1, -1);
       }
    }
 }
