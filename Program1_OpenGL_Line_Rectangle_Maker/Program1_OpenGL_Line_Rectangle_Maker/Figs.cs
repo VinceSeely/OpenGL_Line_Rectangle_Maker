@@ -1,7 +1,5 @@
-// Put a comment block here!
-// You should put a comment block on top of each class also.
-// Look for ??? places to finish the code.
-// Remove all my editorial comments from this file!
+//Figs holds information about how figures will be drawn and what the data type looks like
+//Author: tianb
 
 using System.Collections.Generic;   // Use List Generic
 using System.Drawing;               // Use Color and Point
@@ -18,7 +16,7 @@ namespace Figures
 
       public abstract void Show();
 
-      public Color FGColor   // C# properties are neat!
+      public Color FGColor   
       {
          get { return fgColor; }
          set { fgColor = value; }
@@ -34,11 +32,6 @@ namespace Figures
 
       public void ReplacePoint ( Point p, int index ) { pts[index] = p; }
    }
-
-   // Note that the use of the "T" for 
-   // type names is to avoid conflicts with 
-   // System.Drawing objects with the same names.
-   // That way the "user" can also say:  using Figures;
 
    public class TLine : Figure
    {
@@ -58,6 +51,9 @@ namespace Figures
 
    public class TRectangle : Figure
    {
+      /// <summary>
+      /// Show figure
+      /// </summary>
       public override void Show()
       {
          GL.Color3(fgColor);
